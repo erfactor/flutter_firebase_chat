@@ -1,0 +1,89 @@
+{
+    "@@locale": "en",
+
+    "common_readMore": "Read more",
+    "common_showLess": "Show less",
+    "common_filter": "Filter",
+    "common_close": "Close",
+    "common_clear": "Clear",
+    "common_cancel": "Cancel",
+    "common_premium": "Premium",
+    "common_giveUsAFeedback": "Give us a feedback",
+    "common_goBack": "Go back",
+    "common_refresh": "Refresh",
+
+    "home_map": "Map",
+    "home_list": "List",
+    "home_settings": "Settings",
+
+    "map_goToPremiumToCheckThisPlace": "Go to premium to check this place",
+
+    "list_anotherGreatPlace": "Another great place",
+    "list_searchResultsFor": "Search results for",
+    "list_mapLocation": "map location",
+    "list_currentLocation": "current location",
+    "list_noResults": "No results",
+    "list_typeAtLeast": "Type at least %s letters to see matching results",
+
+    "list_thereAreNoPlaces": "There are no places according to the given criteria.",
+    "list_clearFilters": "Clear filters",
+
+    "search_whereDoYouWantTogo": "Where do you want to go?",
+    "search_loading": "Loading",
+
+    "placeType_freeCamping": "Free Camping",
+    "placeType_campingSite": "Camping Site",
+    "placeType_motorhomeParking": "Motorhome Parking",
+
+    "filters_typesOfCampingPlaces": "Types of camping places",
+    "filters_placeSize": "Place Size",
+    "filters_placeSizeSmall": "Small (less than or %s vehicles)",
+    "filters_placeSizeBig": "Big (more than %s vehicles)",
+    "filters_travelPeriod": "Travel period",
+    "filters_from": "From",
+    "filters_to": "To",
+    "filters_applyFilters": "Apply Filters",
+
+    "location_settings": "Settings",
+    "location_youHavePreviouslyDisabledLocation": "You have previously disabled location for this app. In order to enable it, you need to change location permissions in the device settings.",
+
+    "settings_language": "Language",
+    "settings_selectYourLanguage": "Select your language",
+    "settings_goToPremium": "Go to premium",
+    "settings_congratulationYouAreAPremiumUser": "Congratulation! You are a premium user!",
+    "settings_termsAndConditions": "Terms & Conditions",
+    "settings_privacyPolicy": "Privacy policy",
+
+    "feedback_yourEmailOptional": "Your e-mail (optional)",
+    "feedback_typeYourEmail": "Type your e-mail",
+    "feedback_message": "Message",
+    "feedback_tellUsWhatIsYourProblem": "Tell us what is your problem",
+    "feedback_send": "Send",
+    "feedback_thanks": "Thanks!",
+    "feedback_yourFeedbackHasBeenSent": "Your feedback has been sent.",
+
+    "premium_goToPremium": "Go to premium",
+    "premium_buySubscription": "Buy subscription",
+    "premium_becomePremiumUser": "Become a premium member!",
+    "premium_fullAccessToMoreThan": "Full access to more than 1300 sites in Norway",
+    "premium_allPlacesAvailable": "All places available on map and list view",
+    "premium_advancedFiltering": "Advanced filtering",
+    "premium_get3daysFullAccess": "Get 3 days full access for free.",
+    "premium_yearSubscriptionForJust": "Year subscription for just 249 NOK!",
+    "premium_yippee": "Yippee!",
+    "premium_youAreNowPremiumUser": "You are now a premium user!",
+    "premium_exploreTheMap": "Explore the map",
+
+    "place_directions": "Directions",
+    "place_description": "Description",
+    "place_allYearRound": "All year round",
+    "place_servicesAndEquipment": "Services & Equipment",
+    "place_locationAndContact": "Location & Contact",
+    "place_showOnMap": "Show on map",
+    "place_aboveTranslation": "Above translation was done automatically by Google Translate engine.",
+
+    "error_contentLoadingError": "Content loading error, we are working to fix this.",
+    "error_mapLoadingError": "Map loading error, we are working to fix this.",
+    "error_internetConnectionError": "Internet connection error, please refresh.",
+    "error_pleaseEnterValidEmailAddress": "Please enter valid e-mail address."
+}
