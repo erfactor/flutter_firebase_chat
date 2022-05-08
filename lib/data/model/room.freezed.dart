@@ -20,6 +20,7 @@ Room _$RoomFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Room {
+  String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -31,7 +32,7 @@ mixin _$Room {
 abstract class $RoomCopyWith<$Res> {
   factory $RoomCopyWith(Room value, $Res Function(Room) then) =
       _$RoomCopyWithImpl<$Res>;
-  $Res call({String name});
+  $Res call({String? id, String name});
 }
 
 /// @nodoc
@@ -44,9 +45,14 @@ class _$RoomCopyWithImpl<$Res> implements $RoomCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -60,7 +66,7 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
   factory _$$_RoomCopyWith(_$_Room value, $Res Function(_$_Room) then) =
       __$$_RoomCopyWithImpl<$Res>;
   @override
-  $Res call({String name});
+  $Res call({String? id, String name});
 }
 
 /// @nodoc
@@ -74,9 +80,14 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_$_Room(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -88,16 +99,18 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Room implements _Room {
-  const _$_Room({required this.name});
+  const _$_Room({this.id, required this.name});
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String name;
 
   @override
   String toString() {
-    return 'Room(name: $name)';
+    return 'Room(id: $id, name: $name)';
   }
 
   @override
@@ -105,13 +118,16 @@ class _$_Room implements _Room {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Room &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -125,10 +141,12 @@ class _$_Room implements _Room {
 }
 
 abstract class _Room implements Room {
-  const factory _Room({required final String name}) = _$_Room;
+  const factory _Room({final String? id, required final String name}) = _$_Room;
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 
+  @override
+  String? get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

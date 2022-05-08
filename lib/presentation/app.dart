@@ -2,7 +2,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/util/consts.dart';
-import 'package:firebase_chat/util/sl.dart';
 import 'package:oktoast/oktoast.dart';
 
 final _globalNavigatorKey = GlobalKey<NavigatorState>();

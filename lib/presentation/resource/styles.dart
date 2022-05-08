@@ -1,4 +1,3 @@
-import 'package:firebase_chat/presentation/resource/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class Styles {

@@ -6,6 +6,7 @@ part 'room.g.dart';
 @freezed
 class Room with _$Room {
   const factory Room({
+    String? id,
     required String name,
   }) = _Room;
 

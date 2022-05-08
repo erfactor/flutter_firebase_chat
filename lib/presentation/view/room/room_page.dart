@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_chat/data/model/message.dart';
 import 'package:firebase_chat/data/model/room.dart';
+import 'package:firebase_chat/data/repository/room_repository.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
+import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
+import 'package:firebase_chat/util/sl.dart';
 import 'package:flutter/material.dart';
 
-class InboxPage extends StatelessWidget {
-  const InboxPage();
+class RoomPage extends StatelessWidget {
+  const RoomPage(this.room);
+  final Room room;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,23 @@ class InboxPage extends StatelessWidget {
         builder: _RoomsView.new,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog<String>(
+            context: context,
+            builder: (context) => const EnterTextDialog(),
+          ).then((message) {
+            if (message != null) {
+              return sl<RoomRepository>().createMessage(
+                room.id!,
+                Message(
+                  text: message,
+                  user: FirebaseAuth.instance.currentUser!.displayName ?? '',
+                  avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
+                ),
+              );
+            }
+          });
+        },
         child: const Icon(Icons.add),
       ),
     );

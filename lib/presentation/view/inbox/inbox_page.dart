@@ -3,6 +3,7 @@ import 'package:firebase_chat/data/model/room.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
 import 'package:firebase_chat/data/repository/rooms_repository.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
+import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class InboxPage extends StatelessWidget {
         onPressed: () {
           showDialog<String>(
             context: context,
-            builder: (context) => const _CreateRoomDialog(),
+            builder: (context) => const EnterTextDialog(),
           ).then((roomName) {
             if (roomName != null) {
               return sl<RoomsRepository>().createRoom(Room(name: roomName));
@@ -36,33 +37,6 @@ class InboxPage extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-    );
-  }
-}
-
-class _CreateRoomDialog extends HookWidget {
-  const _CreateRoomDialog();
-
-  @override
-  Widget build(BuildContext context) {
-    final textController = useTextEditingController();
-    return AlertDialog(
-      content: ColumnMin(
-        children: [
-          const Text('Enter room name'),
-          TextField(controller: textController),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: Navigator.of(context).pop,
-          child: const Text('Cancel', style: TextStyle(color: Styles.red)),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop<String>(textController.value.text),
-          child: const Text('Confirm', style: TextStyle(color: Styles.green)),
-        ),
-      ],
     );
   }
 }
