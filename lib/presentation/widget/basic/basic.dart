@@ -17,6 +17,7 @@ export './extensions/riverpod_extension.dart';
 export '../buttons/buttons.dart';
 export '../images/svg_icon.dart';
 export '../separator.dart';
+export '../../../util/sl.dart';
 export 'package:firebase_chat/data/model/unit.dart';
 
 part '_animated.dart';

@@ -9,11 +9,11 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: InkWell(
-        onTap: () => Navigator.of(context).pop(),
-        child: const Icon(Icons.chevron_left).center,
-      ),
-      centerTitle: false,
+      // leading: InkWell(
+      //   onTap: () => Navigator.of(context).pop(),
+      //   child: const Icon(Icons.chevron_left).center,
+      // ),
+      centerTitle: true,
       title: Text(text, style: TS.medium16),
       titleSpacing: 0,
       toolbarHeight: 56,
