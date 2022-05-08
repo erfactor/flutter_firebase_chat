@@ -55,7 +55,7 @@ class _RoomsView extends StatelessWidget {
         return Card(
           clipBehavior: Clip.antiAlias,
           child: ListTile(
-            onTap: () {},
+            onTap: () => Navigator.of(context).pushNamed(Routes.room, arguments: room),
             title: Text(room.name),
           ),
         );
