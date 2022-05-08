@@ -1,3 +1,4 @@
+import 'package:firebase_chat/presentation/view/inbox/inbox_page.dart';
 import 'package:firebase_chat/presentation/view/sign_in/sign_in_page.dart';
 import 'package:firebase_chat/presentation/view/start/start_page.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class Routes {
         return const StartPage();
       case signIn:
         return const SignInPage();
+      case inbox:
+        return const InboxPage();
       default:
         return null;
     }

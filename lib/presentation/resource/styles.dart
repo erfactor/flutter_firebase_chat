@@ -15,21 +15,6 @@ class Styles {
   static const Color background = Colors.white;
 
   static ThemeData getThemeData({required BuildContext context}) {
-    return ThemeData(
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      scaffoldBackgroundColor: background,
-      backgroundColor: background,
-      primaryColor: green2,
-      dividerColor: black,
-      colorScheme: const ColorScheme.light(primary: green2, background: background),
-      textTheme: Theme.of(context).textTheme.apply(fontFamily: 'BaiJamjuree', bodyColor: black, displayColor: black),
-      appBarTheme: const AppBarTheme(backgroundColor: background, foregroundColor: black),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: background,
-        selectedLabelStyle: TS.bold12,
-        unselectedLabelStyle: TS.bold12,
-        unselectedItemColor: black,
-      ),
-    );
+    return ThemeData.dark();
   }
 }

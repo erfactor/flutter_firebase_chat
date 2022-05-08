@@ -28,7 +28,7 @@ class _App extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(() {
       final authSubscription = FirebaseAuth.instance.idTokenChanges().listen((user) {
-        Navigator.of(context).pushNamedAndRemoveUntil(user == null ? Routes.signIn : Routes.inbox, (route) => false);
+        globalNavigator.pushNamedAndRemoveUntil(user == null ? Routes.signIn : Routes.inbox, (route) => false);
       });
       return authSubscription.cancel;
     });
