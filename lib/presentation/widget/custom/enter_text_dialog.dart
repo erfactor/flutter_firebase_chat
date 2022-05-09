@@ -9,7 +9,7 @@ class EnterTextDialog extends HookWidget {
     return AlertDialog(
       content: ColumnMin(
         children: [
-          const Text('Enter text'),
+          const Text('Enter room name'),
           TextField(controller: textController),
         ],
       ),

@@ -19,7 +19,10 @@ class RoomRepository {
   }
 
   Stream<List<Message>> getMessages(String roomId) {
-    return collectionReference(roomId).snapshots().map((snapshot) => snapshot.docs.mapList((document) => document.data()));
+    return collectionReference(roomId)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.mapList((document) => document.data()));
   }
 
   Future createMessage(String roomId, Message message) {

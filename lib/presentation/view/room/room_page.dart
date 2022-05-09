@@ -48,6 +48,7 @@ class _SendMessageRow extends HookWidget {
               text: textController.value.text,
               user: FirebaseAuth.instance.currentUser!.displayName ?? '',
               avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
+              createdAt: DateTime.now(),
             ),
           );
           textController.text = '';
@@ -69,7 +70,7 @@ class _MessagesView extends StatelessWidget {
       itemCount: rooms.length,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
       itemBuilder: (context, index) {
-        final message = rooms[rooms.length - 1 - index];
+        final message = rooms[index];
         return Card(
           clipBehavior: Clip.antiAlias,
           child: ListTile(

@@ -22,6 +22,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 mixin _$Message {
   String get text => throw _privateConstructorUsedError;
   String get user => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ mixin _$Message {
 abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res>;
-  $Res call({String text, String user, String? avatarUrl});
+  $Res call({String text, String user, DateTime createdAt, String? avatarUrl});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
   $Res call({
     Object? text = freezed,
     Object? user = freezed,
+    Object? createdAt = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -59,6 +61,10 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       avatarUrl: avatarUrl == freezed
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -73,7 +79,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
           _$_Message value, $Res Function(_$_Message) then) =
       __$$_MessageCopyWithImpl<$Res>;
   @override
-  $Res call({String text, String user, String? avatarUrl});
+  $Res call({String text, String user, DateTime createdAt, String? avatarUrl});
 }
 
 /// @nodoc
@@ -89,6 +95,7 @@ class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
   $Res call({
     Object? text = freezed,
     Object? user = freezed,
+    Object? createdAt = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_$_Message(
@@ -100,6 +107,10 @@ class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       avatarUrl: avatarUrl == freezed
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -112,7 +123,10 @@ class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Message implements _Message {
   const _$_Message(
-      {required this.text, required this.user, required this.avatarUrl});
+      {required this.text,
+      required this.user,
+      required this.createdAt,
+      required this.avatarUrl});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
@@ -122,11 +136,13 @@ class _$_Message implements _Message {
   @override
   final String user;
   @override
+  final DateTime createdAt;
+  @override
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'Message(text: $text, user: $user, avatarUrl: $avatarUrl)';
+    return 'Message(text: $text, user: $user, createdAt: $createdAt, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -136,6 +152,7 @@ class _$_Message implements _Message {
             other is _$_Message &&
             const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.avatarUrl, avatarUrl));
   }
 
@@ -145,6 +162,7 @@ class _$_Message implements _Message {
       runtimeType,
       const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(avatarUrl));
 
   @JsonKey(ignore: true)
@@ -162,6 +180,7 @@ abstract class _Message implements Message {
   const factory _Message(
       {required final String text,
       required final String user,
+      required final DateTime createdAt,
       required final String? avatarUrl}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
@@ -170,6 +189,8 @@ abstract class _Message implements Message {
   String get text => throw _privateConstructorUsedError;
   @override
   String get user => throw _privateConstructorUsedError;
+  @override
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   String? get avatarUrl => throw _privateConstructorUsedError;
   @override
