@@ -22,6 +22,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 mixin _$Message {
   String get text => throw _privateConstructorUsedError;
   String get user => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
 
@@ -34,7 +35,11 @@ mixin _$Message {
 abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res>;
-  $Res call({String text, String user, DateTime createdAt, String? avatarUrl});
+  $Res call(
+      {String text,
+      String user,
+      @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson) DateTime createdAt,
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -79,7 +84,11 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
           _$_Message value, $Res Function(_$_Message) then) =
       __$$_MessageCopyWithImpl<$Res>;
   @override
-  $Res call({String text, String user, DateTime createdAt, String? avatarUrl});
+  $Res call(
+      {String text,
+      String user,
+      @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson) DateTime createdAt,
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -125,7 +134,8 @@ class _$_Message implements _Message {
   const _$_Message(
       {required this.text,
       required this.user,
-      required this.createdAt,
+      @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
+          required this.createdAt,
       required this.avatarUrl});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
@@ -136,6 +146,7 @@ class _$_Message implements _Message {
   @override
   final String user;
   @override
+  @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
   final DateTime createdAt;
   @override
   final String? avatarUrl;
@@ -180,7 +191,8 @@ abstract class _Message implements Message {
   const factory _Message(
       {required final String text,
       required final String user,
-      required final DateTime createdAt,
+      @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
+          required final DateTime createdAt,
       required final String? avatarUrl}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
@@ -190,6 +202,7 @@ abstract class _Message implements Message {
   @override
   String get user => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   String? get avatarUrl => throw _privateConstructorUsedError;

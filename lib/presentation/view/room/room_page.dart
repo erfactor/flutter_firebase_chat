@@ -65,21 +65,37 @@ class _MessagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       reverse: true,
       itemCount: rooms.length,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      separatorBuilder: (_,__) => Height4,
       itemBuilder: (context, index) {
         final message = rooms[index];
-        return Card(
-          clipBehavior: Clip.antiAlias,
-          child: ListTile(
-            title: Text(message.user),
-            subtitle: Text(message.text).padVertical4,
-            trailing: Avatar(url: message.avatarUrl),
-          ),
-        );
+        return _MessageView(message: message);
       },
+    );
+  }
+}
+
+class _MessageView extends StatelessWidget {
+  const _MessageView({required this.message});
+  final Message message;
+
+  @override
+  Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+    final isMe = message.user == user.displayName && user.photoURL == message.avatarUrl;
+    return Padding(
+      padding: EdgeInsets.only(left: isMe ? 40 : 0, right: isMe ? 0 : 40),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          title: Text(message.user),
+          subtitle: Text(message.text).padVertical4,
+          trailing: Avatar(url: message.avatarUrl),
+        ),
+      ),
     );
   }
 }
