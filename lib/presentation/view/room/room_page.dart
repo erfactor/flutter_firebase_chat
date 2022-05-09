@@ -40,20 +40,25 @@ class _SendMessageRow extends HookWidget {
       Width16,
       TextField(controller: textController).expanded,
       Width12,
-      IconButton(
-        onPressed: () {
-          sl<RoomRepository>().createMessage(
-            roomId,
-            Message(
-              text: textController.value.text,
-              user: FirebaseAuth.instance.currentUser!.displayName ?? '',
-              avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
-              createdAt: DateTime.now(),
-            ),
-          );
-          textController.text = '';
-        },
-        icon: const Icon(Icons.send),
+      ValueListenableBuilder(
+        valueListenable: textController,
+        builder: (_, TextEditingValue text, ___) => IconButton(
+          onPressed: text.text.isBlank
+              ? null
+              : () {
+                  sl<RoomRepository>().createMessage(
+                    roomId,
+                    Message(
+                      text: textController.value.text,
+                      user: FirebaseAuth.instance.currentUser!.displayName ?? '',
+                      avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
+                      createdAt: DateTime.now(),
+                    ),
+                  );
+                  textController.text = '';
+                },
+          icon: const Icon(Icons.send),
+        ),
       )
     ]).padVertical(24).colored(Colors.white12);
   }
@@ -69,7 +74,7 @@ class _MessagesView extends StatelessWidget {
       reverse: true,
       itemCount: rooms.length,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-      separatorBuilder: (_,__) => Height4,
+      separatorBuilder: (_, __) => Height4,
       itemBuilder: (context, index) {
         final message = rooms[index];
         return _MessageView(message: message);
