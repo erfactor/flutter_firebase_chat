@@ -36,31 +36,34 @@ class _SendMessageRow extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
-    return RowMax(children: [
-      Width16,
-      TextField(controller: textController).expanded,
-      Width12,
-      ValueListenableBuilder(
-        valueListenable: textController,
-        builder: (_, TextEditingValue text, ___) => IconButton(
-          onPressed: text.text.isBlank
-              ? null
-              : () {
-                  sl<RoomRepository>().createMessage(
-                    roomId,
-                    Message(
-                      text: textController.value.text,
-                      user: FirebaseAuth.instance.currentUser!.displayName ?? '',
-                      avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
-                      createdAt: DateTime.now(),
-                    ),
-                  );
-                  textController.text = '';
-                },
-          icon: const Icon(Icons.send),
+
+    return RowMax(
+      children: [
+        Width16,
+        TextField(controller: textController).expanded,
+        Width12,
+        ValueListenableBuilder(
+          valueListenable: textController,
+          builder: (_, TextEditingValue text, ___) => IconButton(
+            onPressed: text.text.isBlank
+                ? null
+                : () {
+                    sl<RoomRepository>().createMessage(
+                      roomId,
+                      Message(
+                        text: textController.value.text,
+                        user: FirebaseAuth.instance.currentUser!.displayName ?? '',
+                        avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
+                        createdAt: DateTime.now(),
+                      ),
+                    );
+                    textController.text = '';
+                  },
+            icon: const Icon(Icons.send),
+          ),
         ),
-      )
-    ]).padVertical(24).colored(Colors.white12);
+      ],
+    ).padVertical(24).colored(Colors.white12);
   }
 }
 
@@ -91,6 +94,7 @@ class _MessageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
     final isMe = message.user == user.displayName && user.photoURL == message.avatarUrl;
+
     return Padding(
       padding: EdgeInsets.only(left: isMe ? 40 : 0, right: isMe ? 0 : 40),
       child: Card(

@@ -1,3 +1,4 @@
+// ignore_for_file: long-parameter-list
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProviderLogger extends ProviderObserver {

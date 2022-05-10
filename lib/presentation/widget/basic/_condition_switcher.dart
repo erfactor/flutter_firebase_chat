@@ -11,6 +11,7 @@ class ConditionSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final child = condition ? trueBuilder(context) : falseBuilder(context);
+
     return animate
       ? AnimatedSwitcher(
           duration: 150.milliseconds,

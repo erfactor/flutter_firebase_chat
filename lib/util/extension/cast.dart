@@ -1,9 +1,3 @@
 extension Cast<T> on T {
-  R? cast<R>() {
-    if (this is R) {
-      return this as R;
-    } else {
-      return null;
-    }
-  }
+  R? cast<R>() => this is R ? this as R : null;
 }

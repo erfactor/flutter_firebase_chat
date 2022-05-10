@@ -20,8 +20,10 @@ class SvgNetworkIcon extends HookWidget {
           _loadedUrls.add(url);
         }
       });
+
       return subscription.cancel;
     });
+
     return isConnected.value;
   }
 
@@ -34,6 +36,7 @@ class SvgNetworkIcon extends HookWidget {
     if (!_useIsConnected()) {
       return buildPlaceholder();
     }
+
     return buildBody();
   }
 

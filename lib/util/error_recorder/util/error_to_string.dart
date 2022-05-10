@@ -9,6 +9,7 @@ String errorToString(Object errorObject) {
     if (dioException.error is SocketException) {
       return 'No network connection.';
     }
+
     return dioException.message;
   }
 
@@ -16,5 +17,6 @@ String errorToString(Object errorObject) {
   if (error != null) {
     return Error.safeToString(error);
   }
+
   return errorObject.toString();
 }

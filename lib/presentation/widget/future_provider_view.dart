@@ -9,6 +9,7 @@ class FutureProviderView<T> extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncValue = ref.watch(provider);
+
     return asyncValue.when(
       data: builder,
       error: (error, st) => Text(error.toString()).center,

@@ -10,10 +10,11 @@ class RoomsRepository {
   late final collectionReference = _firestore //
       .collection('rooms')
       .withConverter<Room>(
-          fromFirestore: (snapshot, _) {
-            return Room.fromJson(snapshot.data()!).copyWith(id: snapshot.id);
-          },
-          toFirestore: (room, __) => room.toJson());
+        fromFirestore: (snapshot, _) {
+          return Room.fromJson(snapshot.data()!).copyWith(id: snapshot.id);
+        },
+        toFirestore: (room, __) => room.toJson(),
+      );
 
   Stream<List<Room>> getRooms() {
     return collectionReference.snapshots().map((snapshot) => snapshot.docs.mapList((document) => document.data()));

@@ -23,6 +23,7 @@ class ImageNetwork extends HookWidget {
           isConnectionRestored.value = true;
         }
       });
+
       return subscription.cancel;
     });
 
@@ -45,6 +46,7 @@ class ShimmerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const baseColor = Color(0xFFF2F2F2);
+
     return Shimmer.fromColors(
       baseColor: baseColor,
       highlightColor: Styles.background,

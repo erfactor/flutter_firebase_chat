@@ -52,6 +52,7 @@ class _RoomsView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
       itemBuilder: (context, index) {
         final room = rooms[index];
+
         return Card(
           clipBehavior: Clip.antiAlias,
           child: ListTile(
