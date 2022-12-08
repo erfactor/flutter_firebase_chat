@@ -1,11 +1,13 @@
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/data/model/room.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
-import 'package:firebase_chat/data/repository/rooms_repository.dart';
+import 'package:firebase_chat/presentation/view/sign_in/sign_in_page.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
-import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:googleapis/firebasedynamiclinks/v1.dart';
 
 class InboxPage extends StatelessWidget {
   const InboxPage();
@@ -25,15 +27,27 @@ class InboxPage extends StatelessWidget {
         builder: _RoomsView.new,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog<String>(
-            context: context,
-            builder: (context) => const EnterTextDialog(),
-          ).then((roomName) {
-            if (roomName != null) {
-              return sl<RoomsRepository>().createRoom(Room(name: roomName));
-            }
-          });
+        onPressed: () async {
+          // final account = await gsi.si();
+          // print('[L] ${DateTime.now()} account: $account');
+          final user = await gsi.signIn();
+          print('[L] ${DateTime.now()} user: $user');
+          print('[L] ${DateTime.now()} gsi.currentUser.email: ${user?.email}');
+
+          var client = await gsi.authenticatedClient();
+          if (client == null) {
+            print('[L] ${DateTime.now()}: null client');
+            return;
+          }
+          print('[L] ${DateTime.now()} client: ${client.credentials.accessToken}');
+          final linkResponse = await FirebaseDynamicLinksApi(
+            client,
+          ).shortLinks.create(CreateShortDynamicLinkRequest(
+                  dynamicLinkInfo: DynamicLinkInfo(
+                domainUriPrefix: 'https://chat4321.page.link',
+                link: 'https://google.com',
+              )));
+          print('[L] ${DateTime.now()} linkResponse: ${linkResponse.shortLink}');
         },
         child: const Icon(Icons.add),
       ),
