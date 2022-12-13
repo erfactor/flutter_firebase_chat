@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:firebase_chat/util/extension/cast.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_chat/util/extension/cast.dart';
 
 bool isErrorNetworkError(Object? error) {
   final dioError = error.cast<DioError>();
@@ -10,5 +10,6 @@ bool isErrorNetworkError(Object? error) {
       return true;
     }
   }
+
   return false;
 }

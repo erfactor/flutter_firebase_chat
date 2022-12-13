@@ -5,7 +5,6 @@ import 'package:firebase_chat/data/repository/rooms_repository.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
-import 'package:flutter/material.dart';
 
 class InboxPage extends StatelessWidget {
   const InboxPage();
@@ -15,26 +14,24 @@ class InboxPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inbox'),
+        actions: [TextButton(onPressed: FirebaseAuth.instance.signOut, child: const Text('Sign out'))],
         centerTitle: true,
-        actions: [
-          TextButton(onPressed: FirebaseAuth.instance.signOut, child: const Text('Sign out')),
-        ],
       ),
       body: FutureProviderView(
         provider: roomsProvider,
         builder: _RoomsView.new,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog<String>(
-            context: context,
-            builder: (context) => const EnterTextDialog(),
-          ).then((roomName) {
+        onPressed: () async => showDialog<String>(
+          context: context,
+          builder: (context) => const EnterTextDialog(),
+        ).then(
+          (roomName) {
             if (roomName != null) {
-              return sl<RoomsRepository>().createRoom(Room(name: roomName));
+              sl<RoomsRepository>().createRoom(Room(name: roomName));
             }
-          });
-        },
+          },
+        ),
         child: const Icon(Icons.add),
       ),
     );
@@ -48,19 +45,16 @@ class _RoomsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: rooms.length,
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       itemBuilder: (context, index) {
         final room = rooms[index];
 
         return Card(
           clipBehavior: Clip.antiAlias,
-          child: ListTile(
-            onTap: () => Navigator.of(context).pushNamed(Routes.room, arguments: room),
-            title: Text(room.name),
-          ),
+          child: ListTile(title: Text(room.name), onTap: () async => Navigator.of(context).pushNamed(Routes.room, arguments: room)),
         );
       },
+      itemCount: rooms.length,
     );
   }
 }

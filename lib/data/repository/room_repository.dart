@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_chat/data/model/message.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
-import 'package:injectable/injectable.dart';
 
-@LazySingleton()
+final roomRepositoryProvider = Provider((_) => RoomRepository());
+
 class RoomRepository {
   RoomRepository();
   final _firestore = FirebaseFirestore.instance;
@@ -25,7 +25,7 @@ class RoomRepository {
         .map((snapshot) => snapshot.docs.mapList((document) => document.data()));
   }
 
-  Future createMessage(String roomId, Message message) {
+  Future<void> createMessage(String roomId, Message message) {
     return collectionReference(roomId).add(message);
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 
 class LocalErrorRecorder extends ErrorRecorder {
   @override
-  void recordError(dynamic error, StackTrace? stack) {
-    debugPrintThrottled(error.toString());
+  void recordError(Object error, StackTrace? stack) {
+    debugPrint(error.toString());
     if (stack != null) {
       debugPrintStack(stackTrace: stack);
     }

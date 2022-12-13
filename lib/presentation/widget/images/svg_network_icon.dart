@@ -1,6 +1,6 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/presentation/widget/images/connectivity_stream.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 class SvgNetworkIcon extends HookWidget {
   const SvgNetworkIcon(this.url, {this.color = Styles.black, this.size});
@@ -17,6 +17,7 @@ class SvgNetworkIcon extends HookWidget {
           .listen((connectivityResult) {
         if (connectivityResult != ConnectivityResult.none) {
           isConnected.value = true;
+          // ignore: avoid-ignoring-return-values, result not needed
           _loadedUrls.add(url);
         }
       });
@@ -43,9 +44,9 @@ class SvgNetworkIcon extends HookWidget {
   Widget buildBody() {
     return SvgPicture.network(
       url,
-      color: color,
       width: size,
       placeholderBuilder: (_) => buildPlaceholder(),
+      color: color,
     ).squared(size);
   }
 

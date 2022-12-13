@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'message.dart';
 
@@ -34,7 +34,8 @@ mixin _$Message {
 /// @nodoc
 abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
-      _$MessageCopyWithImpl<$Res>;
+      _$MessageCopyWithImpl<$Res, Message>;
+  @useResult
   $Res call(
       {String text,
       String user,
@@ -43,38 +44,41 @@ abstract class $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
+class _$MessageCopyWithImpl<$Res, $Val extends Message>
+    implements $MessageCopyWith<$Res> {
   _$MessageCopyWithImpl(this._value, this._then);
 
-  final Message _value;
   // ignore: unused_field
-  final $Res Function(Message) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = freezed,
-    Object? user = freezed,
-    Object? createdAt = freezed,
+    Object? text = null,
+    Object? user = null,
+    Object? createdAt = null,
     Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      avatarUrl: avatarUrl == freezed
+      avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,6 +88,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
           _$_Message value, $Res Function(_$_Message) then) =
       __$$_MessageCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String text,
       String user,
@@ -92,35 +97,34 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
+class __$$_MessageCopyWithImpl<$Res>
+    extends _$MessageCopyWithImpl<$Res, _$_Message>
     implements _$$_MessageCopyWith<$Res> {
   __$$_MessageCopyWithImpl(_$_Message _value, $Res Function(_$_Message) _then)
-      : super(_value, (v) => _then(v as _$_Message));
+      : super(_value, _then);
 
-  @override
-  _$_Message get _value => super._value as _$_Message;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = freezed,
-    Object? user = freezed,
-    Object? createdAt = freezed,
+    Object? text = null,
+    Object? user = null,
+    Object? createdAt = null,
     Object? avatarUrl = freezed,
   }) {
     return _then(_$_Message(
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      avatarUrl: avatarUrl == freezed
+      avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -161,29 +165,30 @@ class _$_Message implements _Message {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Message &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.avatarUrl, avatarUrl));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(avatarUrl));
+  int get hashCode =>
+      Object.hash(runtimeType, text, user, createdAt, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MessageCopyWith<_$_Message> get copyWith =>
       __$$_MessageCopyWithImpl<_$_Message>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MessageToJson(this);
+    return _$$_MessageToJson(
+      this,
+    );
   }
 }
 
@@ -198,14 +203,14 @@ abstract class _Message implements Message {
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
   @override
-  String get text => throw _privateConstructorUsedError;
+  String get text;
   @override
-  String get user => throw _privateConstructorUsedError;
+  String get user;
   @override
   @JsonKey(fromJson: _dateFromJson, toJson: _dateToJson)
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  String? get avatarUrl => throw _privateConstructorUsedError;
+  String? get avatarUrl;
   @override
   @JsonKey(ignore: true)
   _$$_MessageCopyWith<_$_Message> get copyWith =>

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'action_state.dart';
 
@@ -26,10 +26,10 @@ mixin _$ActionState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(T value)? data,
-    TResult Function()? loading,
-    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? init,
+    TResult? Function(T value)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$ActionState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ActionInit<T> value)? init,
-    TResult Function(_ActionData<T> value)? data,
-    TResult Function(_ActionLoading<T> value)? loading,
-    TResult Function(_ActionError<T> value)? error,
+    TResult? Function(_ActionInit<T> value)? init,
+    TResult? Function(_ActionData<T> value)? data,
+    TResult? Function(_ActionLoading<T> value)? loading,
+    TResult? Function(_ActionError<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,17 +72,18 @@ mixin _$ActionState<T> {
 abstract class $ActionStateCopyWith<T, $Res> {
   factory $ActionStateCopyWith(
           ActionState<T> value, $Res Function(ActionState<T>) then) =
-      _$ActionStateCopyWithImpl<T, $Res>;
+      _$ActionStateCopyWithImpl<T, $Res, ActionState<T>>;
 }
 
 /// @nodoc
-class _$ActionStateCopyWithImpl<T, $Res>
+class _$ActionStateCopyWithImpl<T, $Res, $Val extends ActionState<T>>
     implements $ActionStateCopyWith<T, $Res> {
   _$ActionStateCopyWithImpl(this._value, this._then);
 
-  final ActionState<T> _value;
   // ignore: unused_field
-  final $Res Function(ActionState<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -94,14 +95,11 @@ abstract class _$$_ActionInitCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_ActionInitCopyWithImpl<T, $Res>
-    extends _$ActionStateCopyWithImpl<T, $Res>
+    extends _$ActionStateCopyWithImpl<T, $Res, _$_ActionInit<T>>
     implements _$$_ActionInitCopyWith<T, $Res> {
   __$$_ActionInitCopyWithImpl(
       _$_ActionInit<T> _value, $Res Function(_$_ActionInit<T>) _then)
-      : super(_value, (v) => _then(v as _$_ActionInit<T>));
-
-  @override
-  _$_ActionInit<T> get _value => super._value as _$_ActionInit<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -137,10 +135,10 @@ class _$_ActionInit<T> extends _ActionInit<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(T value)? data,
-    TResult Function()? loading,
-    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? init,
+    TResult? Function(T value)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
   }) {
     return init?.call();
   }
@@ -174,10 +172,10 @@ class _$_ActionInit<T> extends _ActionInit<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ActionInit<T> value)? init,
-    TResult Function(_ActionData<T> value)? data,
-    TResult Function(_ActionLoading<T> value)? loading,
-    TResult Function(_ActionError<T> value)? error,
+    TResult? Function(_ActionInit<T> value)? init,
+    TResult? Function(_ActionData<T> value)? data,
+    TResult? Function(_ActionLoading<T> value)? loading,
+    TResult? Function(_ActionError<T> value)? error,
   }) {
     return init?.call(this);
   }
@@ -208,26 +206,25 @@ abstract class _$$_ActionDataCopyWith<T, $Res> {
   factory _$$_ActionDataCopyWith(
           _$_ActionData<T> value, $Res Function(_$_ActionData<T>) then) =
       __$$_ActionDataCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T value});
 }
 
 /// @nodoc
 class __$$_ActionDataCopyWithImpl<T, $Res>
-    extends _$ActionStateCopyWithImpl<T, $Res>
+    extends _$ActionStateCopyWithImpl<T, $Res, _$_ActionData<T>>
     implements _$$_ActionDataCopyWith<T, $Res> {
   __$$_ActionDataCopyWithImpl(
       _$_ActionData<T> _value, $Res Function(_$_ActionData<T>) _then)
-      : super(_value, (v) => _then(v as _$_ActionData<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ActionData<T> get _value => super._value as _$_ActionData<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = freezed,
   }) {
     return _then(_$_ActionData<T>(
-      value == freezed
+      freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as T,
@@ -262,6 +259,7 @@ class _$_ActionData<T> extends _ActionData<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ActionDataCopyWith<T, _$_ActionData<T>> get copyWith =>
       __$$_ActionDataCopyWithImpl<T, _$_ActionData<T>>(this, _$identity);
 
@@ -279,10 +277,10 @@ class _$_ActionData<T> extends _ActionData<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(T value)? data,
-    TResult Function()? loading,
-    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? init,
+    TResult? Function(T value)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
   }) {
     return data?.call(value);
   }
@@ -316,10 +314,10 @@ class _$_ActionData<T> extends _ActionData<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ActionInit<T> value)? init,
-    TResult Function(_ActionData<T> value)? data,
-    TResult Function(_ActionLoading<T> value)? loading,
-    TResult Function(_ActionError<T> value)? error,
+    TResult? Function(_ActionInit<T> value)? init,
+    TResult? Function(_ActionData<T> value)? data,
+    TResult? Function(_ActionLoading<T> value)? loading,
+    TResult? Function(_ActionError<T> value)? error,
   }) {
     return data?.call(this);
   }
@@ -344,7 +342,7 @@ abstract class _ActionData<T> extends ActionState<T> {
   const factory _ActionData(final T value) = _$_ActionData<T>;
   const _ActionData._() : super._();
 
-  T get value => throw _privateConstructorUsedError;
+  T get value;
   @JsonKey(ignore: true)
   _$$_ActionDataCopyWith<T, _$_ActionData<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -359,14 +357,11 @@ abstract class _$$_ActionLoadingCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_ActionLoadingCopyWithImpl<T, $Res>
-    extends _$ActionStateCopyWithImpl<T, $Res>
+    extends _$ActionStateCopyWithImpl<T, $Res, _$_ActionLoading<T>>
     implements _$$_ActionLoadingCopyWith<T, $Res> {
   __$$_ActionLoadingCopyWithImpl(
       _$_ActionLoading<T> _value, $Res Function(_$_ActionLoading<T>) _then)
-      : super(_value, (v) => _then(v as _$_ActionLoading<T>));
-
-  @override
-  _$_ActionLoading<T> get _value => super._value as _$_ActionLoading<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -402,10 +397,10 @@ class _$_ActionLoading<T> extends _ActionLoading<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(T value)? data,
-    TResult Function()? loading,
-    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? init,
+    TResult? Function(T value)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
   }) {
     return loading?.call();
   }
@@ -439,10 +434,10 @@ class _$_ActionLoading<T> extends _ActionLoading<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ActionInit<T> value)? init,
-    TResult Function(_ActionData<T> value)? data,
-    TResult Function(_ActionLoading<T> value)? loading,
-    TResult Function(_ActionError<T> value)? error,
+    TResult? Function(_ActionInit<T> value)? init,
+    TResult? Function(_ActionData<T> value)? data,
+    TResult? Function(_ActionLoading<T> value)? loading,
+    TResult? Function(_ActionError<T> value)? error,
   }) {
     return loading?.call(this);
   }
@@ -473,31 +468,27 @@ abstract class _$$_ActionErrorCopyWith<T, $Res> {
   factory _$$_ActionErrorCopyWith(
           _$_ActionError<T> value, $Res Function(_$_ActionError<T>) then) =
       __$$_ActionErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({Object error, StackTrace? stackTrace});
 }
 
 /// @nodoc
 class __$$_ActionErrorCopyWithImpl<T, $Res>
-    extends _$ActionStateCopyWithImpl<T, $Res>
+    extends _$ActionStateCopyWithImpl<T, $Res, _$_ActionError<T>>
     implements _$$_ActionErrorCopyWith<T, $Res> {
   __$$_ActionErrorCopyWithImpl(
       _$_ActionError<T> _value, $Res Function(_$_ActionError<T>) _then)
-      : super(_value, (v) => _then(v as _$_ActionError<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ActionError<T> get _value => super._value as _$_ActionError<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
     Object? stackTrace = freezed,
   }) {
     return _then(_$_ActionError<T>(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-      stackTrace: stackTrace == freezed
+      null == error ? _value.error : error,
+      stackTrace: freezed == stackTrace
           ? _value.stackTrace
           : stackTrace // ignore: cast_nullable_to_non_nullable
               as StackTrace?,
@@ -526,18 +517,17 @@ class _$_ActionError<T> extends _ActionError<T> {
         (other.runtimeType == runtimeType &&
             other is _$_ActionError<T> &&
             const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality()
-                .equals(other.stackTrace, stackTrace));
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(stackTrace));
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ActionErrorCopyWith<T, _$_ActionError<T>> get copyWith =>
       __$$_ActionErrorCopyWithImpl<T, _$_ActionError<T>>(this, _$identity);
 
@@ -555,10 +545,10 @@ class _$_ActionError<T> extends _ActionError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(T value)? data,
-    TResult Function()? loading,
-    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? init,
+    TResult? Function(T value)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
   }
@@ -592,10 +582,10 @@ class _$_ActionError<T> extends _ActionError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ActionInit<T> value)? init,
-    TResult Function(_ActionData<T> value)? data,
-    TResult Function(_ActionLoading<T> value)? loading,
-    TResult Function(_ActionError<T> value)? error,
+    TResult? Function(_ActionInit<T> value)? init,
+    TResult? Function(_ActionData<T> value)? data,
+    TResult? Function(_ActionLoading<T> value)? loading,
+    TResult? Function(_ActionError<T> value)? error,
   }) {
     return error?.call(this);
   }
@@ -621,8 +611,8 @@ abstract class _ActionError<T> extends ActionState<T> {
       {final StackTrace? stackTrace}) = _$_ActionError<T>;
   const _ActionError._() : super._();
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace? get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace? get stackTrace;
   @JsonKey(ignore: true)
   _$$_ActionErrorCopyWith<T, _$_ActionError<T>> get copyWith =>
       throw _privateConstructorUsedError;

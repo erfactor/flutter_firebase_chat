@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_chat/data/model/room.dart';
-import 'package:firebase_chat/presentation/widget/basic/extensions/iterable_extension.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_utils/flutter_utils.dart';
 
-@LazySingleton()
+final roomsRepositoryProvider = Provider((_) => RoomsRepository());
+
 class RoomsRepository {
   RoomsRepository();
   final _firestore = FirebaseFirestore.instance;
@@ -20,7 +20,7 @@ class RoomsRepository {
     return collectionReference.snapshots().map((snapshot) => snapshot.docs.mapList((document) => document.data()));
   }
 
-  Future createRoom(Room room) {
+  Future<void> createRoom(Room room) {
     return collectionReference.add(room);
   }
 }

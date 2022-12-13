@@ -1,4 +1,4 @@
 import 'package:get_it/get_it.dart';
 
-GetIt sl = GetIt.instance;
-
+// ignore: prefer-correct-identifier-length, special shortcut
+final GetIt sl = GetIt.instance;

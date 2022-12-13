@@ -13,7 +13,7 @@ class Styles {
   static const Color orange = Color(0xFFD98B47);
   static const Color background = Colors.white;
 
-  static ThemeData getThemeData({required BuildContext context}) {
+  static ThemeData getThemeData() {
     return ThemeData.dark();
   }
 }

@@ -7,8 +7,8 @@ class RoundedMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      shadowColor: Colors.purple,
       color: Styles.background,
+      shadowColor: Colors.purple,
       borderRadius: BorderRadius.circular(4),
       clipBehavior: Clip.antiAlias,
       child: child,

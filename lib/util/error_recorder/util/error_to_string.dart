@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:firebase_chat/util/extension/cast.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_chat/util/extension/cast.dart';
 
 String errorToString(Object errorObject) {
   final dioException = errorObject.cast<DioError>();

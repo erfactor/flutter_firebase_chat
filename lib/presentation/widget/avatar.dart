@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartx/dartx.dart';
+import 'package:firebase_chat/presentation/widget/custom/shimmer_view.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar({required this.url, this.size = 40, this.onTap});
@@ -24,22 +24,23 @@ class Avatar extends StatelessWidget {
   }
 
   Widget buildImage() {
+    final fadeDuration = 0.milliseconds;
+
     return CachedNetworkImage(
-      width: size,
-      height: size,
       imageUrl: url!,
-      filterQuality: FilterQuality.none,
+      imageBuilder: (context, imageProvider) => AspectRatio(
+        aspectRatio: 1,
+        child: DecoratedBox(decoration: BoxDecoration(image: DecorationImage(image: imageProvider, fit: BoxFit.cover))),
+      ),
       placeholder: (context, url) {
         return const ShimmerView();
       },
-      fadeInDuration: 0.milliseconds,
-      fadeOutDuration: 0.milliseconds,
-      imageBuilder: (context, imageProvider) => AspectRatio(
-        aspectRatio: 1.0,
-        child: Container(
-          decoration: BoxDecoration(image: DecorationImage(image: imageProvider, fit: BoxFit.cover)),
-        ),
-      ),
+      fadeOutDuration: fadeDuration,
+      // ignore: no-equal-arguments, external widget
+      fadeInDuration: fadeDuration,
+      width: size,
+      height: size,
+      filterQuality: FilterQuality.none,
     );
   }
 }
@@ -51,31 +52,11 @@ class _ImagePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(size / 4),
       color: Colors.grey,
       width: size,
       height: size,
-      padding: EdgeInsets.all(size / 4),
       child: const Icon(Icons.camera),
-    );
-  }
-}
-
-class ShimmerView extends StatelessWidget {
-  const ShimmerView({this.radius = 0});
-  final double radius;
-
-  @override
-  Widget build(BuildContext context) {
-    const baseColor = Color(0xFFF2F2F2);
-    return Shimmer.fromColors(
-      baseColor: baseColor,
-      highlightColor: Colors.white,
-      child: Container(
-        decoration: BoxDecoration(
-          color: baseColor,
-          borderRadius: BorderRadius.circular(radius),
-        ),
-      ),
     );
   }
 }

@@ -1,57 +1,14 @@
-include: package:flutter_lints/flutter.yaml
+include: package:strict_flutter_lints/lints.yaml
 
 dart_code_metrics:
-  rules-exclude:
-    - lib/**/*.freezed.dart
-    - lib/util/di/dependency_injection.config.dart
-  metrics:
-    cyclomatic-complexity: 20
-    number-of-parameters: 3
-    number-of-arguments: 1
-    maximum-nesting-level: 5
   rules:
-    - no-boolean-literal-compare
-    - no-empty-block
-    - prefer-trailing-comma
-    - prefer-conditional-expressions
-    - no-equal-then-else
-  anti-patterns:
-    - long-method
-    - long-parameter-list
+    - no-magic-number:
+        exclude:
+          - lib/presentation/**
 
 analyzer:
-  plugins:
-    - dart_code_metrics
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
-  errors:
-    missing_required_param: error
-    missing_return: error
   exclude:
     - lib/util/di/dependency_injection.config.dart
     - lib/**/*.g.dart
-    - "**/*.freezed.dart"
-    - lib/generated/intl/messages_en.dart
-    - lib/generated/intl/messages_all.dart
-
-linter:
-  rules:
-    # Additional rules from https://dart-lang.github.io/linter/lints/
-    always_put_control_body_on_new_line: true
-    await_only_futures: true
-    camel_case_types: true
-    constant_identifier_names: true
-    file_names: true
-    non_constant_identifier_names: true
-    prefer_final_fields: true
-    prefer_final_in_for_each: true
-    prefer_final_locals: true
-    sort_child_properties_last: true
-    unnecessary_getters_setters: true
-    # Excluded rules from https://github.com/flutter/packages/blob/master/packages/flutter_lints/lib/flutter.yaml
-    eol_at_end_of_file: false
-    lines_longer_than_80_chars: false
-    use_key_in_widget_constructors: false
-    avoid_print: false
+    - lib/**/*.freezed.dart
 

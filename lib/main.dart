@@ -1,8 +1,8 @@
+// ignore_for_file: avoid-ignoring-return-values
 import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_chat/presentation/app.dart';
-import 'package:firebase_chat/util/di/dependency_injection.dart';
 import 'package:firebase_chat/util/error_recorder/error_recorder.dart';
 import 'package:firebase_chat/util/error_recorder/firebase_error_recorder.dart';
 import 'package:firebase_chat/util/error_recorder/local_error_recorder.dart';
@@ -13,23 +13,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runZonedGuarded<Future<void>>(
-      () => startApp(),
-      recordError,
-    );
+void main() async => await runZonedGuarded<Future<void>>(startApp, recordError);
 
 Future<void> startApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeDependencyInjection();
   await _initializeFirebase();
   _registerServices();
   await _setPortraitOrientation();
   runApp(const App());
 }
 
-Future<void> _registerServices() async {
-  sl.registerLazySingleton<ErrorRecorder>(() => kReleaseMode ? FirebaseErrorRecorder() : LocalErrorRecorder());
-  sl.registerLazySingleton<FirebaseAnalyticsObserver>(() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance));
+void _registerServices() {
+  sl
+    ..registerLazySingleton<ErrorRecorder>(() => kReleaseMode ? FirebaseErrorRecorder() : LocalErrorRecorder())
+    ..registerLazySingleton<FirebaseAnalyticsObserver>(() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance));
 }
 
 Future<void> _initializeFirebase() async {

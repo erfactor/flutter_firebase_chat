@@ -1,12 +1,11 @@
-import 'package:firebase_chat/presentation/widget/avatar.dart';
-import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/data/model/message.dart';
 import 'package:firebase_chat/data/model/room.dart';
 import 'package:firebase_chat/data/repository/room_repository.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
+import 'package:firebase_chat/presentation/widget/avatar.dart';
+import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
-import 'package:flutter/material.dart';
 
 class RoomPage extends StatelessWidget {
   const RoomPage(this.room);
@@ -44,17 +43,18 @@ class _SendMessageRow extends HookWidget {
         Width12,
         ValueListenableBuilder(
           valueListenable: textController,
-          builder: (_, TextEditingValue text, ___) => IconButton(
+          builder: (_, text, ___) => IconButton(
             onPressed: text.text.isBlank
                 ? null
-                : () {
-                    sl<RoomRepository>().createMessage(
+                : () async {
+                    final currentUser = FirebaseAuth.instance.currentUser!;
+                    await sl<RoomRepository>().createMessage(
                       roomId,
                       Message(
                         text: textController.value.text,
-                        user: FirebaseAuth.instance.currentUser!.displayName ?? '',
-                        avatarUrl: FirebaseAuth.instance.currentUser!.photoURL,
+                        user: currentUser.displayName ?? '',
                         createdAt: DateTime.now(),
+                        avatarUrl: currentUser.photoURL,
                       ),
                     );
                     textController.text = '';
@@ -75,13 +75,10 @@ class _MessagesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       reverse: true,
-      itemCount: rooms.length,
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      itemBuilder: (context, index) => _MessageView(message: rooms[index]),
       separatorBuilder: (_, __) => Height4,
-      itemBuilder: (context, index) {
-        final message = rooms[index];
-        return _MessageView(message: message);
-      },
+      itemCount: rooms.length,
     );
   }
 }

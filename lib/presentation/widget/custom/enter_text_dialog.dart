@@ -6,6 +6,7 @@ class EnterTextDialog extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
+
     return AlertDialog(
       content: ColumnMin(
         children: [
