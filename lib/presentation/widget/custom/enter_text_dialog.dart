@@ -17,11 +17,11 @@ class EnterTextDialog extends HookWidget {
       actions: [
         TextButton(
           onPressed: Navigator.of(context).pop,
-          child: const Text('Cancel', style: TextStyle(color: Styles.red)),
+          child: Text('Cancel', style: TextStyle(color: Colors.red.shade700)),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop<String>(textController.value.text),
-          child: const Text('Confirm', style: TextStyle(color: Styles.green)),
+          child: Text('Confirm', style: TextStyle(color: Colors.green.shade800)),
         ),
       ],
     );

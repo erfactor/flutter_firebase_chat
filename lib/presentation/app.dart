@@ -41,7 +41,8 @@ class _App extends HookWidget {
       onGenerateRoute: Routes.onGenerateRoute,
       navigatorObservers: [firebaseAnalyticsObserver],
       title: 'Firebase Chat',
-      theme: Styles.getThemeData(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
     );
   }

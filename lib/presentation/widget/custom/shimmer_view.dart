@@ -10,7 +10,7 @@ class ShimmerView extends StatelessWidget {
 
     return Shimmer.fromColors(
       baseColor: baseColor,
-      highlightColor: Styles.background,
+      highlightColor: Colors.white,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: baseColor,
