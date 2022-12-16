@@ -1,7 +1,6 @@
 // ignore_for_file: avoid-ignoring-return-values
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_chat/presentation/app.dart';
 import 'package:firebase_chat/util/error_recorder/error_recorder.dart';
 import 'package:firebase_chat/util/error_recorder/firebase_error_recorder.dart';
@@ -24,9 +23,7 @@ Future<void> startApp() async {
 }
 
 void _registerServices() {
-  sl
-    ..registerLazySingleton<ErrorRecorder>(() => kReleaseMode ? FirebaseErrorRecorder() : LocalErrorRecorder())
-    ..registerLazySingleton<FirebaseAnalyticsObserver>(() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance));
+  sl.registerLazySingleton<ErrorRecorder>(() => kReleaseMode ? FirebaseErrorRecorder() : LocalErrorRecorder());
 }
 
 Future<void> _initializeFirebase() async {

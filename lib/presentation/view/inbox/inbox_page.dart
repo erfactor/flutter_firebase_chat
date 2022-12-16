@@ -6,11 +6,11 @@ import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
 
-class InboxPage extends StatelessWidget {
+class InboxPage extends ConsumerWidget {
   const InboxPage();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inbox'),
@@ -28,7 +28,7 @@ class InboxPage extends StatelessWidget {
         ).then(
           (roomName) {
             if (roomName != null) {
-              sl<RoomsRepository>().createRoom(Room(name: roomName));
+              ref.read(roomsRepositoryProvider).createRoom(Room(name: roomName));
             }
           },
         ),

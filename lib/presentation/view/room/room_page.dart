@@ -28,12 +28,12 @@ class RoomPage extends StatelessWidget {
   }
 }
 
-class _SendMessageRow extends HookWidget {
+class _SendMessageRow extends HookConsumerWidget {
   const _SendMessageRow({required this.roomId});
   final String roomId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textController = useTextEditingController();
 
     return RowMax(
@@ -48,15 +48,15 @@ class _SendMessageRow extends HookWidget {
                 ? null
                 : () async {
                     final currentUser = FirebaseAuth.instance.currentUser!;
-                    await sl<RoomRepository>().createMessage(
-                      roomId,
-                      Message(
-                        text: textController.value.text,
-                        user: currentUser.displayName ?? '',
-                        createdAt: DateTime.now(),
-                        avatarUrl: currentUser.photoURL,
-                      ),
-                    );
+                    await ref.read(roomRepositoryProvider).createMessage(
+                          roomId,
+                          Message(
+                            text: textController.value.text,
+                            user: currentUser.displayName ?? '',
+                            createdAt: DateTime.now(),
+                            avatarUrl: currentUser.photoURL,
+                          ),
+                        );
                     textController.text = '';
                   },
             icon: const Icon(Icons.send),

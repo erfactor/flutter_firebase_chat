@@ -1,7 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
-import 'package:firebase_chat/util/consts.dart';
 
 final _globalNavigatorKey = GlobalKey<NavigatorState>();
 NavigatorState get globalNavigator => _globalNavigatorKey.currentState!;
@@ -23,26 +22,25 @@ class _App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(
-      () {
-        return FirebaseAuth.instance
-            .idTokenChanges()
-            .listen(
-              (user) async => globalNavigator.pushNamedAndRemoveUntil<void>(
-                user == null ? Routes.signIn : Routes.inbox,
-                (route) => false,
-              ),
-            )
-            .cancel;
-      },
+      () => FirebaseAuth.instance
+          .idTokenChanges()
+          .listen(
+            (user) async => globalNavigator.pushNamedAndRemoveUntil<void>(
+              user == null ? Routes.signIn : Routes.inbox,
+              (route) => false,
+            ),
+          )
+          .cancel,
       [],
     );
+    final firebaseAnalyticsObserver = useMemoized(() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance));
 
     return MaterialApp(
       navigatorKey: _globalNavigatorKey,
       initialRoute: Routes.start,
       onGenerateRoute: Routes.onGenerateRoute,
-      navigatorObservers: [sl<FirebaseAnalyticsObserver>()],
-      title: Consts.appName,
+      navigatorObservers: [firebaseAnalyticsObserver],
+      title: 'Firebase Chat',
       theme: Styles.getThemeData(),
       debugShowCheckedModeBanner: false,
     );
