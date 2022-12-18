@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/data/model/room.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
 import 'package:firebase_chat/data/repository/rooms_repository.dart';
@@ -15,7 +14,13 @@ class InboxPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Inbox'),
         actions: [
-          TextButton(onPressed: FirebaseAuth.instance.signOut, child: const Text('Sign out')),
+          OutlinedButton(
+            onPressed: () => ProfileRoute().go(context),
+            child: Text(
+              'PROFILE',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.w600, fontSize: 12),
+            ),
+          ).padAll8,
         ],
       ),
       body: FutureProviderView(
