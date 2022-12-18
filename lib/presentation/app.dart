@@ -1,10 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_chat/presentation/resource/routes.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/util/custom_provider_observer.dart';
-
-final _globalNavigatorKey = GlobalKey<NavigatorState>();
-NavigatorState get globalNavigator => _globalNavigatorKey.currentState!;
+import 'package:go_router/go_router.dart';
 
 class App extends HookWidget {
   const App();
@@ -20,31 +19,28 @@ class App extends HookWidget {
   }
 }
 
+final _globalNavigatorKey = GlobalKey<NavigatorState>();
+NavigatorState get globalNavigator => _globalNavigatorKey.currentState!;
+
+final _router = GoRouter(
+  navigatorKey: _globalNavigatorKey,
+  routes: $appRoutes,
+  observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
+);
+
 class _App extends HookWidget {
   const _App();
 
   @override
   Widget build(BuildContext context) {
     useEffect(
-      () => FirebaseAuth.instance
-          .idTokenChanges()
-          .listen(
-            (user) async => globalNavigator.pushNamedAndRemoveUntil<void>(
-              user == null ? Routes.signIn : Routes.inbox,
-              (route) => false,
-            ),
-          )
-          .cancel,
+      () => auth.FirebaseAuth.instance.authStateChanges().listen((_) async => _router.go(SplashRoute().location)).cancel,
       [],
     );
-    final firebaseAnalyticsObserver = useMemoized(() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance));
 
-    return MaterialApp(
-      navigatorKey: _globalNavigatorKey,
-      initialRoute: Routes.start,
-      onGenerateRoute: Routes.onGenerateRoute,
-      navigatorObservers: [firebaseAnalyticsObserver],
+    return MaterialApp.router(
       title: 'Firebase Chat',
+      routerConfig: _router,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,

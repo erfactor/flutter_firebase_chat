@@ -8,6 +8,8 @@ import 'package:firebase_chat/util/error_recorder/local_error_recorder.dart';
 import 'package:firebase_chat/util/sl.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +31,10 @@ void _registerServices() {
 Future<void> _initializeFirebase() async {
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  FirebaseUIAuth.configureProviders([
+    EmailAuthProvider(),
+    GoogleProvider(clientId: ''),
+  ]);
 }
 
 Future<void> _setPortraitOrientation() => SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

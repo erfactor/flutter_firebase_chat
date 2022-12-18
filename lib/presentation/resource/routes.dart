@@ -1,37 +1,46 @@
-// ignore_for_file: cast_nullable_to_non_nullable
+import 'dart:async';
 
-import 'package:firebase_chat/data/model/room.dart';
-import 'package:firebase_chat/presentation/view/inbox/inbox_page.dart';
-import 'package:firebase_chat/presentation/view/room/room_page.dart';
-import 'package:firebase_chat/presentation/view/sign_in/sign_in_page.dart';
-import 'package:firebase_chat/presentation/view/start/start_page.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_chat/presentation/view/auth/profile_page.dart';
+import 'package:firebase_chat/presentation/view/auth/sign_in_page.dart';
+import 'package:firebase_chat/presentation/widget/basic/basic.dart';
+import 'package:go_router/go_router.dart';
 
-class Routes {
-  static const String start = 'start';
-  static const String signIn = 'signIn';
-  static const String inbox = 'inbox';
-  static const String room = 'room';
+part 'routes.g.dart';
 
-  static PageRoute<Object> onGenerateRoute(RouteSettings settings) {
-    return MaterialPageRoute<Object>(
-      builder: (_) => SafeArea(child: _parseRoute(name: Uri.parse(settings.name!).pathSegments.first, arguments: settings.arguments)),
-      settings: settings,
-    );
+@TypedGoRoute<SplashRoute>(path: '/', routes: [
+  TypedGoRoute<SignInRoute>(path: 'login'),
+  TypedGoRoute<ProfileRoute>(path: 'profile'),
+])
+@immutable
+class SplashRoute extends GoRouteData {
+  @override
+  FutureOr<String> redirect() {
+    return FirebaseAuth.instance.currentUser == null ? SignInRoute().location : ProfileRoute().location;
   }
 
-  static Widget _parseRoute({required String name, required Object? arguments}) {
-    switch (name) {
-      case start:
-        return const StartPage();
-      case signIn:
-        return const SignInPage();
-      case inbox:
-        return const InboxPage();
-      case room:
-        return RoomPage(arguments as Room);
-      default:
-        throw ArgumentError('Invalid route');
-    }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox();
+  }
+}
+
+@immutable
+class SignInRoute extends GoRouteData {
+  const SignInRoute();
+
+  @override
+  Widget build(BuildContext context) {
+    return SignInPage();
+  }
+}
+
+@immutable
+class ProfileRoute extends GoRouteData {
+  const ProfileRoute();
+
+  @override
+  Widget build(BuildContext context) {
+    return ProfilePage();
   }
 }
