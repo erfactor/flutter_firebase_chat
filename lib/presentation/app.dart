@@ -1,6 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:firebase_chat/presentation/resource/routes.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/util/custom_provider_observer.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +22,7 @@ final _globalNavigatorKey = GlobalKey<NavigatorState>();
 NavigatorState get globalNavigator => _globalNavigatorKey.currentState!;
 
 final _router = GoRouter(
+  initialLocation: SplashRoute().location,
   navigatorKey: _globalNavigatorKey,
   routes: $appRoutes,
   observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],

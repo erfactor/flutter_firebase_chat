@@ -14,8 +14,9 @@ class InboxPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inbox'),
-        actions: [TextButton(onPressed: FirebaseAuth.instance.signOut, child: const Text('Sign out'))],
-        centerTitle: true,
+        actions: [
+          TextButton(onPressed: FirebaseAuth.instance.signOut, child: const Text('Sign out')),
+        ],
       ),
       body: FutureProviderView(
         provider: roomsProvider,
@@ -51,7 +52,10 @@ class _RoomsView extends StatelessWidget {
 
         return Card(
           clipBehavior: Clip.antiAlias,
-          child: ListTile(title: Text(room.name), onTap: () async => Navigator.of(context).pushNamed(Routes.room, arguments: room)),
+          child: ListTile(
+            title: Text(room.name),
+            onTap: () async => RoomRoute(id: room.id!, name: room.name).go(context),
+          ),
         );
       },
       itemCount: rooms.length,

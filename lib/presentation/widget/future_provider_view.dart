@@ -13,7 +13,7 @@ class FutureProviderView<T> extends ConsumerWidget {
     return asyncValue.when(
       data: builder,
       error: (error, st) => Text(error.toString()).center,
-      loading: () => const LinearProgressIndicator().center,
+      loading: () => const CircularProgressIndicator().center,
     );
   }
 }

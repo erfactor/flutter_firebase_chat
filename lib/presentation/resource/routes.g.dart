@@ -7,12 +7,12 @@ part of 'routes.dart';
 // **************************************************************************
 
 List<GoRoute> get $appRoutes => [
-      $splashRoute,
+      $homeRoute,
     ];
 
-GoRoute get $splashRoute => GoRouteData.$route(
+GoRoute get $homeRoute => GoRouteData.$route(
       path: '/',
-      factory: $SplashRouteExtension._fromState,
+      factory: $HomeRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
           path: 'login',
@@ -22,11 +22,19 @@ GoRoute get $splashRoute => GoRouteData.$route(
           path: 'profile',
           factory: $ProfileRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'splash',
+          factory: $SplashRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'room/:id',
+          factory: $RoomRouteExtension._fromState,
+        ),
       ],
     );
 
-extension $SplashRouteExtension on SplashRoute {
-  static SplashRoute _fromState(GoRouterState state) => SplashRoute();
+extension $HomeRouteExtension on HomeRoute {
+  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
 
   String get location => GoRouteData.$location(
         '/',
@@ -54,6 +62,36 @@ extension $ProfileRouteExtension on ProfileRoute {
 
   String get location => GoRouteData.$location(
         '/profile',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SplashRouteExtension on SplashRoute {
+  static SplashRoute _fromState(GoRouterState state) => const SplashRoute();
+
+  String get location => GoRouteData.$location(
+        '/splash',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $RoomRouteExtension on RoomRoute {
+  static RoomRoute _fromState(GoRouterState state) => RoomRoute(
+        id: state.params['id']!,
+        name: state.queryParams['name'],
+      );
+
+  String get location => GoRouteData.$location(
+        '/room/${Uri.encodeComponent(id)}',
+        queryParams: {
+          if (name != null) 'name': name!,
+        },
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
