@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 import 'package:firebase_chat/util/custom_provider_observer.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:go_router/go_router.dart';
 
 class App extends HookWidget {
@@ -38,11 +39,12 @@ class _App extends HookWidget {
       [],
     );
 
+    var flexScheme = FlexScheme.espresso;
     return MaterialApp.router(
       title: 'Firebase Chat',
       routerConfig: _router,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: FlexThemeData.light(scheme: flexScheme),
+      darkTheme: FlexThemeData.dark(scheme: flexScheme),
       debugShowCheckedModeBanner: false,
     );
   }

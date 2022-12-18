@@ -15,10 +15,11 @@ class InboxPage extends ConsumerWidget {
         title: const Text('Inbox'),
         actions: [
           OutlinedButton(
+            style: OutlinedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.secondary),
             onPressed: () => ProfileRoute().go(context),
             child: Text(
               'PROFILE',
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.w600, fontSize: 12),
+              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontWeight: FontWeight.w600, fontSize: 12),
             ),
           ).padAll8,
         ],
