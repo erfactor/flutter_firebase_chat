@@ -41,7 +41,9 @@ class _App extends HookWidget {
     );
 
     final flexScheme = FlexScheme.espresso;
-    var textTheme = GoogleFonts.poppinsTextTheme();
+    var textTheme = GoogleFonts.poppinsTextTheme().copyWith(
+      button: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+    );
     return MaterialApp.router(
       title: 'Firebase Chat',
       routerConfig: _router,

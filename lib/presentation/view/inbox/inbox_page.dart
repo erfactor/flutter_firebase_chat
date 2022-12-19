@@ -2,7 +2,7 @@ import 'package:firebase_chat/data/model/room.dart';
 import 'package:firebase_chat/data/repository/rooms_providers.dart';
 import 'package:firebase_chat/data/repository/rooms_repository.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
-import 'package:firebase_chat/presentation/widget/custom/enter_text_dialog.dart';
+import 'package:firebase_chat/presentation/view/inbox/create_room_dialog.dart';
 import 'package:firebase_chat/presentation/widget/future_provider_view.dart';
 
 class InboxPage extends ConsumerWidget {
@@ -19,7 +19,7 @@ class InboxPage extends ConsumerWidget {
             onPressed: () => ProfileRoute().go(context),
             child: Text(
               'PROFILE',
-              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontWeight: FontWeight.w600, fontSize: 12),
+              style: Theme.of(context).textTheme.button?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
             ),
           ).padAll8,
         ],
@@ -31,7 +31,7 @@ class InboxPage extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async => showDialog<String>(
           context: context,
-          builder: (context) => const EnterTextDialog(),
+          builder: (context) => const CreateRoomDialog(),
         ).then(
           (roomName) {
             if (roomName != null) {
