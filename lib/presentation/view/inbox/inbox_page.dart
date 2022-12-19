@@ -51,20 +51,27 @@ class _RoomsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+    return ListView.separated(
+      padding: EdgeInsets.symmetric(vertical: 16),
       itemBuilder: (context, index) {
         final room = rooms[index];
 
         return Card(
-          clipBehavior: Clip.antiAlias,
-          child: ListTile(
-            title: Text(room.name),
-            onTap: () async => RoomRoute(id: room.id!, name: room.name).go(context),
+          clipBehavior: Clip.hardEdge,
+          child: SizedBox(
+            height: 52,
+            child: InkWell(
+              onTap: () async => RoomRoute(id: room.id!, name: room.name).go(context),
+              child: Text(
+                room.name,
+                style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.bold),
+              ).padAll8,
+            ),
           ),
         );
       },
       itemCount: rooms.length,
+      separatorBuilder: (_, __) => Height4,
     );
   }
 }

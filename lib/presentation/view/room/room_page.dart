@@ -28,42 +28,71 @@ class RoomPage extends StatelessWidget {
   }
 }
 
-class _SendMessageRow extends HookConsumerWidget {
+class _SendMessageRow extends StatefulHookConsumerWidget {
   const _SendMessageRow({required this.roomId});
   final String roomId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  createState() => _SendMessageRowState();
+}
+
+class _SendMessageRowState extends ConsumerState<_SendMessageRow> {
+  @override
+  Widget build(BuildContext context) {
     final textController = useTextEditingController();
 
-    return RowMax(
-      children: [
-        Width16,
-        TextField(controller: textController).expanded,
-        Width12,
-        ValueListenableBuilder(
-          valueListenable: textController,
-          builder: (_, text, ___) => IconButton(
-            onPressed: text.text.isBlank
-                ? null
-                : () async {
-                    final currentUser = FirebaseAuth.instance.currentUser!;
-                    await ref.read(roomRepositoryProvider).createMessage(
-                          roomId,
-                          Message(
-                            text: textController.value.text,
-                            user: currentUser.displayName ?? '',
-                            createdAt: DateTime.now(),
-                            avatarUrl: currentUser.photoURL,
-                          ),
-                        );
-                    textController.text = '';
-                  },
-            icon: const Icon(Icons.send),
-          ),
+    return Material(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      child: Container(
+        decoration: BoxDecoration(border: Border(top: BorderSide())),
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: RowMax(
+          children: [
+            Width12,
+            TextField(
+              minLines: 1,
+              maxLines: 3,
+              controller: textController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                fillColor: Theme.of(context).colorScheme.background,
+                hintText: 'Aa',
+              ),
+            ).expanded,
+            Width4,
+            buildSendIcon(textController),
+            Width4,
+          ],
         ),
-      ],
-    ).padVertical(24).colored(Colors.white12);
+      ),
+    );
+  }
+
+  Widget buildSendIcon(TextEditingController textController) {
+    return ValueListenableBuilder(
+      valueListenable: textController,
+      builder: (_, text, ___) {
+        var isTextBlank = text.text.isBlank;
+        return IconButton(
+          onPressed: isTextBlank
+              ? null
+              : () async {
+                  final currentUser = FirebaseAuth.instance.currentUser!;
+                  await ref.read(roomRepositoryProvider).createMessage(
+                        widget.roomId,
+                        Message(
+                          text: textController.value.text,
+                          user: currentUser.displayName ?? '',
+                          createdAt: DateTime.now(),
+                          avatarUrl: currentUser.photoURL,
+                        ),
+                      );
+                  textController.text = '';
+                },
+          icon: Icon(Icons.send_rounded, color: isTextBlank ? Theme.of(context).disabledColor : Theme.of(context).colorScheme.primary),
+        );
+      },
+    );
   }
 }
 
@@ -97,8 +126,8 @@ class _MessageView extends StatelessWidget {
       child: Card(
         clipBehavior: Clip.antiAlias,
         child: ListTile(
-          title: Text(message.user),
-          subtitle: Text(message.text).padVertical4,
+          title: Text(message.text).padVertical4,
+          subtitle: Text(message.user),
           trailing: Avatar(url: message.avatarUrl),
         ),
       ),

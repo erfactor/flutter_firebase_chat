@@ -40,16 +40,25 @@ class _App extends HookWidget {
       [],
     );
 
-    final flexScheme = FlexScheme.espresso;
-    var textTheme = GoogleFonts.poppinsTextTheme().copyWith(
-      button: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-    );
     return MaterialApp.router(
       title: 'Firebase Chat',
       routerConfig: _router,
-      theme: FlexThemeData.light(scheme: flexScheme, textTheme: textTheme),
-      darkTheme: FlexThemeData.dark(scheme: flexScheme, textTheme: textTheme),
+      theme: _buildTheme(Brightness.light),
+      darkTheme: _buildTheme(Brightness.dark),
       debugShowCheckedModeBanner: false,
+    );
+  }
+
+  ThemeData _buildTheme(brightness) {
+    final flexScheme = FlexScheme.espresso;
+    var isLight = brightness == Brightness.light;
+    var baseTheme = isLight ? FlexThemeData.light(scheme: flexScheme) : FlexThemeData.dark(scheme: flexScheme);
+
+    return baseTheme.copyWith(
+      scaffoldBackgroundColor: isLight ? Color(0xFFFAFAFA) : Color(0xFF121212),
+      textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme).copyWith(
+        button: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+      ),
     );
   }
 }
