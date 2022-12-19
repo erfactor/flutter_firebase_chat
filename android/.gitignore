@@ -12,3 +12,4 @@ key.properties
 **/*.keystore
 **/*.jks
 firebase_credentials.json
+fastlane/report.xml
