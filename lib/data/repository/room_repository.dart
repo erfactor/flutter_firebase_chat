@@ -2,13 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_chat/data/model/message.dart';
 import 'package:firebase_chat/presentation/widget/basic/basic.dart';
 
-final roomRepositoryProvider = Provider((_) => RoomRepository());
+import '../services/firestore_provider.dart';
+
+final roomRepositoryProvider = Provider(RoomRepository.new);
 
 class RoomRepository {
-  RoomRepository();
-  final _firestore = FirebaseFirestore.instance;
+  RoomRepository(this.ref);
+  final Ref ref;
+
   CollectionReference<Message> collectionReference(String roomId) {
-    return _firestore //
+    return ref
+        .watch(firestoreProvider) //
         .collection('rooms')
         .doc(roomId)
         .collection('messages')
