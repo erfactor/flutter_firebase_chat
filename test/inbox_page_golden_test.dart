@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'util/test_material_app.dart';
 
 void main() {
-  testWidgets('matches golden file', (WidgetTester tester) async {
+  testWidgets('$InboxPage with 1 room golden', (WidgetTester tester) async {
     await tester.pumpWidget(TestMaterialApp(
       overrides: [
         roomsProvider.overrideWith((ref) => Stream.value([Room(name: 'room')]))
