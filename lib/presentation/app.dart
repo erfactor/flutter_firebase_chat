@@ -46,6 +46,16 @@ class _App extends HookWidget {
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
       debugShowCheckedModeBanner: false,
+      builder: (context, child) {
+        return Container(
+          color: Theme.of(context).backgroundColor,
+          alignment: Alignment.center,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 800),
+            child: child!,
+          ),
+        );
+      },
     );
   }
 }

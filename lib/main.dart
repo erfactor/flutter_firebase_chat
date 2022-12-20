@@ -6,6 +6,7 @@ import 'package:firebase_chat/presentation/app.dart';
 import 'package:firebase_chat/util/error_recorder/error_recorder.dart';
 import 'package:firebase_chat/util/error_recorder/firebase_error_recorder.dart';
 import 'package:firebase_chat/util/error_recorder/local_error_recorder.dart';
+import 'package:firebase_chat/util/use_path_strategy/use_path_strategy.dart';
 import 'package:firebase_chat/util/sl.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -18,6 +19,7 @@ import 'package:flutter/services.dart';
 void main() async => await runZonedGuarded<Future<void>>(startApp, recordError);
 
 Future<void> startApp() async {
+  usePathStrategyPlatform();
   WidgetsFlutterBinding.ensureInitialized();
   await _initializeFirebase();
   _registerServices();
