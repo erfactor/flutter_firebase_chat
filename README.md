@@ -1,16 +1,25 @@
-# firebase_chat
+# Flutter + firebase chat
+Chat app showcasing how easy it is to deploy a simple chat app with Flutter and Firebase. The codebase has proper architecture and different tests.
 
-A new Flutter project.
+## Deploy
+- Web - https://chat-6479b.web.app - deployed to Firebase Hosting
+- Android - https://appdistribution.firebase.dev/i/17bb6079368f48d2 - deployed to Firebase App Distribution using Fastlane
 
-## Getting Started
+## Important libraries
+- `riverpod` - State management & service locator
+- `go_router` - Typed routing
+- `flex_color_scheme` - Ready color schemes for light/dark mode
 
-This project is a starting point for a Flutter application.
+## Firebase products
+- Authentication - Email+password & Google
+- Analytics
+- Crashlytics
+- Firestore
+- Hosting
+- App Distribution
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tests
+ - Riverpod - Creating a room
+ - Widget - Creating a room
+ - Golden - Inbox page
+ - Integration - Email + password auth flow
