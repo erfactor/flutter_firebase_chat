@@ -14,15 +14,15 @@ void main() {
       ],
     );
 
-    final data = container.listen(roomsProvider.stream, (previous, next) {}).read();
-    var room = Room(name: 'room');
-    container.read(roomsRepositoryProvider).createRoom(room);
+    const room = Room(name: 'room');
+    await container.read(roomsRepositoryProvider).createRoom(room);
+    final data = container.read(roomsProvider.stream);
 
     expect(
-        data,
-        emitsInOrder([
-          [],
-          [room]
-        ]));
+      data,
+      emitsInOrder(<List<Room>>[
+        [room],
+      ]),
+    );
   });
 }

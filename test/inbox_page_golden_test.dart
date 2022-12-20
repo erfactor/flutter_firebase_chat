@@ -6,12 +6,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'util/test_material_app.dart';
 
 void main() {
-  testWidgets('$InboxPage with 1 room golden', (WidgetTester tester) async {
+  testWidgets('$InboxPage with 1 room golden', (tester) async {
     await tester.pumpWidget(TestMaterialApp(
       overrides: [
-        roomsProvider.overrideWith((ref) => Stream.value([Room(name: 'room')]))
+        roomsProvider.overrideWith((ref) => Stream.value([const Room(name: 'room')])),
       ],
-      child: InboxPage(),
+      child: const InboxPage(),
     ));
 
     await tester.pump();

@@ -11,11 +11,11 @@ class CreateRoomDialog extends HookWidget {
       content: ColumnMin(
         cross: CrossAxisAlignment.start,
         children: [
-          Text('Create a room', style: Theme.of(context).textTheme.headline5),
+          Text('Create a room', style: context.textTheme.headline5),
           Height8,
           TextField(
             controller: textController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text('name'),
               border: OutlineInputBorder(),
             ),

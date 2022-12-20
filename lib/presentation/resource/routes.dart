@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-match-file-name
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,7 @@ part 'routes.g.dart';
 class HomeRoute extends GoRouteData {
   @override
   Widget build(BuildContext context) {
-    return InboxPage();
+    return const InboxPage();
   }
 }
 
@@ -32,12 +33,12 @@ class SplashRoute extends GoRouteData {
 
   @override
   FutureOr<String> redirect() {
-    return FirebaseAuth.instance.currentUser == null ? SignInRoute().location : HomeRoute().location;
+    return FirebaseAuth.instance.currentUser == null ? const SignInRoute().location : HomeRoute().location;
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    return const SizedBox();
   }
 }
 
@@ -47,7 +48,7 @@ class SignInRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context) {
-    return SignInPage();
+    return const SignInPage();
   }
 }
 
@@ -57,7 +58,7 @@ class ProfileRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context) {
-    return ProfilePage();
+    return const ProfilePage();
   }
 }
 

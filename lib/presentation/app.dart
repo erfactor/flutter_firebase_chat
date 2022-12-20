@@ -24,10 +24,10 @@ final _globalNavigatorKey = GlobalKey<NavigatorState>();
 NavigatorState get globalNavigator => _globalNavigatorKey.currentState!;
 
 final _router = GoRouter(
-  initialLocation: SplashRoute().location,
-  navigatorKey: _globalNavigatorKey,
   routes: $appRoutes,
+  initialLocation: const SplashRoute().location,
   observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
+  navigatorKey: _globalNavigatorKey,
 );
 
 class _App extends HookWidget {
@@ -36,39 +36,36 @@ class _App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(
-      () => auth.FirebaseAuth.instance.authStateChanges().listen((_) async => _router.go(SplashRoute().location)).cancel,
+      () => auth.FirebaseAuth.instance.authStateChanges().listen((_) async => _router.go(const SplashRoute().location)).cancel,
       [],
     );
 
     return MaterialApp.router(
-      title: 'Firebase Chat',
       routerConfig: _router,
+      builder: (context, child) {
+        return Container(
+          alignment: Alignment.center,
+          color: Theme.of(context).backgroundColor,
+          child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800), child: child),
+        );
+      },
+      title: 'Firebase Chat',
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
       debugShowCheckedModeBanner: false,
-      builder: (context, child) {
-        return Container(
-          color: Theme.of(context).backgroundColor,
-          alignment: Alignment.center,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 800),
-            child: child!,
-          ),
-        );
-      },
     );
   }
 }
 
-ThemeData buildTheme(brightness) {
-  final flexScheme = FlexScheme.espresso;
-  var isLight = brightness == Brightness.light;
-  var baseTheme = isLight ? FlexThemeData.light(scheme: flexScheme) : FlexThemeData.dark(scheme: flexScheme);
+ThemeData buildTheme(Brightness brightness) {
+  const flexScheme = FlexScheme.espresso;
+  final isLight = brightness == Brightness.light;
+  final baseTheme = isLight ? FlexThemeData.light(scheme: flexScheme) : FlexThemeData.dark(scheme: flexScheme);
 
   return baseTheme.copyWith(
-    scaffoldBackgroundColor: isLight ? Color(0xFFFAFAFA) : Color(0xFF121212),
+    scaffoldBackgroundColor: isLight ? const Color(0xFFFAFAFA) : const Color(0xFF121212),
     textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme).copyWith(
-      button: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+      button: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
     ),
   );
 }

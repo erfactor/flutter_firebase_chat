@@ -12,11 +12,7 @@ class TestMaterialApp extends StatelessWidget {
       overrides: [...?overrides],
       child: Consumer(
         builder: (context, ref, _) {
-          return MaterialApp(
-            theme: buildTheme(Brightness.light),
-            debugShowCheckedModeBanner: false,
-            home: child,
-          );
+          return MaterialApp(home: child, theme: buildTheme(Brightness.light), debugShowCheckedModeBanner: false);
         },
       ),
     );

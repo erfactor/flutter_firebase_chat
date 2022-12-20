@@ -7,13 +7,13 @@ import 'util/rooms_repository_mock.dart';
 import 'util/test_material_app.dart';
 
 void main() {
-  testWidgets('When adding a new room to $InboxPage Then a new $Text with this room\'s name can be found', (WidgetTester tester) async {
-    final roomName = 'room';
+  testWidgets("When adding a new room to $InboxPage Then a new $Text with this room's name can be found", (tester) async {
+    const roomName = 'room';
     await tester.pumpWidget(TestMaterialApp(
       overrides: [
         roomsRepositoryProvider.overrideWithValue(RoomsRepositoryMock()),
       ],
-      child: InboxPage(),
+      child: const InboxPage(),
     ));
     await tester.pump();
 

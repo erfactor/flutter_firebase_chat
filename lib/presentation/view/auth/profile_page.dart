@@ -8,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProfileScreen(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
     );
   }

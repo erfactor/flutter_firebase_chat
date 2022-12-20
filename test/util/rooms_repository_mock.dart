@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RoomsRepositoryMock extends Mock implements RoomsRepository {
-  // ignore: close_sinks
+  // ignore: close_sinks, in test
   final roomsSubject = BehaviorSubject.seeded(<Room>[]);
 
   @override

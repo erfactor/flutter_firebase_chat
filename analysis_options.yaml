@@ -1,0 +1,18 @@
+include: package:strict_flutter_lints/lints.yaml
+
+dart_code_metrics:
+  rules:
+    - no-magic-number:
+        exclude:
+          - lib/presentation/**
+    - avoid-top-level-members-in-tests:
+        exclude:
+          - test/util/**
+
+analyzer:
+  exclude:
+    - lib/util/di/dependency_injection.config.dart
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+    - lib/firebase_options.dart
+

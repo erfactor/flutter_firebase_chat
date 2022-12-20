@@ -42,28 +42,22 @@ class _SendMessageRowState extends ConsumerState<_SendMessageRow> {
     final textController = useTextEditingController();
 
     return Material(
-      color: Theme.of(context).colorScheme.primaryContainer,
+      color: context.colorScheme.primaryContainer,
       child: Container(
-        decoration: BoxDecoration(border: Border(top: BorderSide())),
-        padding: EdgeInsets.symmetric(vertical: 10),
-        child: RowMax(
-          children: [
-            Width12,
-            TextField(
-              minLines: 1,
-              maxLines: 3,
-              controller: textController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                fillColor: Theme.of(context).colorScheme.background,
-                hintText: 'Aa',
-              ),
-            ).expanded,
-            Width4,
-            buildSendIcon(textController),
-            Width4,
-          ],
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(border: Border(top: BorderSide())),
+        child: RowMax(children: [
+          Width12,
+          TextField(
+            controller: textController,
+            decoration: InputDecoration(hintText: 'Aa', fillColor: context.colorScheme.background, border: const OutlineInputBorder()),
+            maxLines: 3,
+            minLines: 1,
+          ).expanded,
+          Width4,
+          buildSendIcon(textController),
+          Width4,
+        ]),
       ),
     );
   }
@@ -72,27 +66,28 @@ class _SendMessageRowState extends ConsumerState<_SendMessageRow> {
     return ValueListenableBuilder(
       valueListenable: textController,
       builder: (_, text, ___) {
-        var isTextBlank = text.text.isBlank;
+        final isTextBlank = text.text.isBlank;
+
         return IconButton(
-          onPressed: isTextBlank
-              ? null
-              : () async {
-                  final currentUser = FirebaseAuth.instance.currentUser!;
-                  await ref.read(roomRepositoryProvider).createMessage(
-                        widget.roomId,
-                        Message(
-                          text: textController.value.text,
-                          user: currentUser.displayName ?? '',
-                          createdAt: DateTime.now(),
-                          avatarUrl: currentUser.photoURL,
-                        ),
-                      );
-                  textController.text = '';
-                },
-          icon: Icon(Icons.send_rounded, color: isTextBlank ? Theme.of(context).disabledColor : Theme.of(context).colorScheme.primary),
+          onPressed: isTextBlank ? null : () async => createMessage(textController),
+          icon: Icon(Icons.send_rounded, color: isTextBlank ? Theme.of(context).disabledColor : context.colorScheme.primary),
         );
       },
     );
+  }
+
+  Future<void> createMessage(TextEditingController textController) async {
+    final currentUser = FirebaseAuth.instance.currentUser!;
+    await ref.read(roomRepositoryProvider).createMessage(
+          widget.roomId,
+          Message(
+            text: textController.value.text,
+            user: currentUser.displayName ?? '',
+            createdAt: DateTime.now(),
+            avatarUrl: currentUser.photoURL,
+          ),
+        );
+    textController.text = '';
   }
 }
 

@@ -1147,7 +1147,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1d7395542a038cf65ce318975300dd19230676c0"
+      resolved-ref: "35ee14732cbf7ae8b9d3418d9801c0f5dcc1a496"
       url: "https://github.com/erfactor/strict_flutter_lints.git"
     source: git
     version: "1.0.0"

@@ -6,5 +6,6 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_utils/flutter_utils.dart';
 
 export '../../../util/sl.dart';
+export 'extensions/build_context_x.dart';
 
 part '_consts.dart';
