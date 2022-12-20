@@ -53,6 +53,8 @@ dev_dependencies:
   retrofit_generator: ^4.2.0
   strict_flutter_lints:
     git: https://github.com/erfactor/strict_flutter_lints.git
+  integration_test:
+    sdk: flutter
 
 dependency_overrides:
   analyzer: 5.2.0
